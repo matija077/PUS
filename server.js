@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 var WebSocketServer = require('websocket').server;
 var http = require('http');
+const Gpio = require('onoff').Gpio;
+const button = new Gpio(4, 'in', 'rising', {debounceTimeout: 10});
 
 var server = http.createServer(function(request, response) {
     console.log((new Date()) + ' Received request for ' + request.url);
@@ -36,6 +38,17 @@ wsServer.on('request', function(request) {
 
     var connection = request.accept('echo-protocol', request.origin);
     console.log((new Date()) + ' Connection accepted.');
+
+    button.watch(function (err, value) {
+    if (err) {
+	throw err;
+    }
+    //if (value==1) {
+    	console.log("Button pressed");
+	connection.sendUTF("Send");
+    //}
+    });
+
     connection.on('message', function(message) {
         if (message.type === 'utf8') {
             console.log('Received Message: ' + message.utf8Data);
