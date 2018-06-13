@@ -44,7 +44,7 @@ wsServer.on('request', function(request) {
 	throw err;
     }
     //if (value==1) {
-    	console.log("Button pressed");
+    	//console.log("Button pressed");
 	connection.sendUTF("Send");
     //}
     });
@@ -62,5 +62,6 @@ wsServer.on('request', function(request) {
     });
     connection.on('close', function(reasonCode, description) {
         console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
+    	button = null
     });
 });
