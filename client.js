@@ -24,7 +24,7 @@ client.on('connect', function(connection) {
     });
     connection.on('message', function(message) {
         if (message.type === 'utf8') {
-            console.log("Received: '" + message.utf8Data + "'");
+            //console.log("Received: '" + message.utf8Data + "'");
 	   if (message.utf8Data=="Send"){
 	   	sendNumber();
 	   }
@@ -45,16 +45,16 @@ client.on('connect', function(connection) {
 	    }
 	    function sendData(err, temperature, humidity) {
 		//console.log('data: ' + data);
-		console.log('err: ' + err);
+		if (err!=null) console.log('err: ' + err);
 		var time = new Date(Date.now());
 		time = dayNames[time.getMonth()]+' '+monthNames[time.getDay()]+' '+time.getDate()+' '+time.getFullYear()+' '+time.getHours()+':'+time.getMinutes()+':'+time.getSeconds()
-		connection.sendUTF(time + '  temp:' + temperature);
+		connection.sendUTF(time + '  temp:' + temperature + 'C');
 		//setTimeout(sendNumber, 10000);
 	    }
 	    readTemp(sendData);
-            var number = new Date(Date.now());
-	    number = number.toString();
-	    connection.sendUTF(number);
+            //var number = new Date(Date.now());
+	    //number = number.toString();
+	    //connection.sendUTF(number);
             //setTimeout(sendNumber, 10000);
         }
     }
@@ -68,5 +68,5 @@ client.on('connect', function(connection) {
     //tryit();
 });
 
-// client.connect('ws://192.168.182.135:8080/', 'echo-protocol');
-client.connect('ws://localhost:8080/', 'echo-protocol');
+client.connect('ws://192.168.182.135:8080/', 'echo-protocol');
+//client.connect('ws://localhost:8080/', 'echo-protocol');
