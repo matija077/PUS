@@ -51,7 +51,7 @@ wsServer.on('request', function(request) {
 
     connection.on('message', function(message) {
         if (message.type === 'utf8') {
-            console.log('Received Message: ' + message.utf8Data);
+            console.log( message.utf8Data);
             connection.sendUTF(message.utf8Data);
 	    //connection.sendUTF("Send")
         }
@@ -62,6 +62,5 @@ wsServer.on('request', function(request) {
     });
     connection.on('close', function(reasonCode, description) {
         console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
-    	button = null;
-	});
+    });
 });

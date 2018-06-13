@@ -47,8 +47,9 @@ client.on('connect', function(connection) {
 		//console.log('data: ' + data);
 		if (err!=null) console.log('err: ' + err);
 		var time = new Date(Date.now());
-		time = dayNames[time.getMonth()]+' '+monthNames[time.getDay()]+' '+time.getDate()+' '+time.getFullYear()+' '+time.getHours()+':'+time.getMinutes()+':'+time.getSeconds()
-		connection.sendUTF(time + '  temp:' + temperature + 'C');
+		//time = dayNames[time.getMonth()]+' '+monthNames[time.getDay()]+' '+time.getDate()+' '+time.getFullYear()+' '+time.getHours()+':'+time.getMinutes()+':'+time.getSeconds()
+		time = time.getHours() + ":" +  time.getMinutes() + ":" +  time.getSeconds();
+		connection.sendUTF('U' + time + ' temperatura na uredaju client je: ' + temperature + 'C');
 		//setTimeout(sendNumber, 10000);
 	    }
 	    readTemp(sendData);
