@@ -49,7 +49,7 @@ client.on('connect', function(connection) {
 		var time = new Date(Date.now());
 		//time = dayNames[time.getMonth()]+' '+monthNames[time.getDay()]+' '+time.getDate()+' '+time.getFullYear()+' '+time.getHours()+':'+time.getMinutes()+':'+time.getSeconds()
 		time = time.getHours() + ":" +  time.getMinutes() + ":" +  time.getSeconds();
-		connection.sendUTF('U' + time + ' temperatura na uredaju client je: ' + temperature + 'C');
+		connection.sendUTF('U ' + time + ' temperatura na uredaju client je: ' + temperature + 'C');
 		//setTimeout(sendNumber, 10000);
 	    }
 	    readTemp(sendData);
